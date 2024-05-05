@@ -75,6 +75,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = NULL;
 	}
 }
+void ApplicationManager::ClearGraph() {
+	for (int i = 0; i < FigCount; i++) {
+		delete FigList[i];
+	}
+	FigCount = 0;
+	Clipboard = NULL;
+}
+
 //==================================================================================//
 //						Figures Management Functions								//
 //==================================================================================//
@@ -97,6 +105,14 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 
 	return NULL;
 }
+void ApplicationManager::setClipboard(CFigure* ptr) {
+	
+	Clipboard = ptr;
+}
+
+void ApplicationManager::setSelectedFig(CFigure* ptr)
+{}
+
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//
