@@ -4,9 +4,9 @@
 #include "Actions\AddCircAction.h"
 #include "Actions\AddSquareAction.h"
 #include "Actions\AddTriAction.h"
-#include"Actions\Copy.h"
-#include"Actions\Paste.h"
-#include"Actions\Delete.h"
+#include "Actions\Copy.h"
+#include "Actions\Paste.h"
+#include "Actions\Delete.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
