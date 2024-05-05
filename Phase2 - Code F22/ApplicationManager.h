@@ -35,7 +35,19 @@ public:
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
-		
+
+		void ClearGraph();          //de el clear all 
+           void setClipboard(CFigure*ptr);      // setter w getter el clipboard
+          CFigure* getClipboard(CFigure* Clipboard)const {
+            	return Clipboard;
+}
+void setSelectedFig(CFigure* ptr);//setter w getter el clipboard
+CFigure* getSelectedFig(CFigure* SelectedFig) {
+	return SelectedFig;
+}
+void dltfig(CFigure* selectedFig) {}//delete el figure el selected
+
+	
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
