@@ -11,7 +11,9 @@ void CFigure::SetSelected(bool s)
 
 bool CFigure::IsSelected() const
 {	return Selected; }
-
+void CFigure::getCopy()
+{
+}
 void CFigure::ChngDrawClr(color Dclr)
 {	FigGfxInfo.DrawClr = Dclr; }
 
@@ -19,5 +21,12 @@ void CFigure::ChngFillClr(color Fclr)
 {	
 	FigGfxInfo.isFilled = true;
 	FigGfxInfo.FillClr = Fclr; 
+}
+GfxInfo CFigure::getGfxInfo() const
+{
+	return GfxInfo();
+}
+
+void CFigure::Delete(CFigure* SelectedFig) {
 }
 
