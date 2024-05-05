@@ -4,7 +4,9 @@
 #include "Actions\AddCircAction.h"
 #include "Actions\AddSquareAction.h"
 #include "Actions\AddTriAction.h"
-
+#include"Actions\Copy.h"
+#include"Actions\Paste.h"
+#include"Actions\Delete.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -56,8 +58,18 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DRAW_TRI:
 			pAct = new AddTriAction(this);
 			break;
-
-
+		
+	         case DO_DLT:
+			pAct = new Delete(this);
+			break;
+		
+		case DO_CPY:
+			pAct = new Copy(this);
+			break;
+		
+		case DO_PST:
+			pAct = new Paste(this);
+			break;
 		case EXIT:
 			///create ExitAction here
 			
