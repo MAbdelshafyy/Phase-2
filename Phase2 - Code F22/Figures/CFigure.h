@@ -25,6 +25,9 @@ public:
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
 
+virtual void movecrdnts(Point pClicked, Point& p2, Point& p3)=0;// initailized 3ashan teb2a overriden be kol figure
+GfxInfo getGfxInfo()const;// beygeeb arar el fig
+
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
 
@@ -33,7 +36,8 @@ public:
 
 	//virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
 	//virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
-
+virtual void Delete(CFigure* Selectedfig) = 0;//Draw the figure
+	
 	//virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 };
 
