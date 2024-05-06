@@ -31,50 +31,50 @@ void Paste::Execute() {
 			return;
 		}
 		//hastakhdem hena el dynamic cast 3ashan aghayar el pointers beta3et el CFigures akhaleeha pointer el paste
-		if (dynamic_cast<CLine*>(clipboard)) { //bey check anhy figure fel clipboard
-			Point p2;
-			Point p3;
-			clipboard->movecrdnts(pClicked, p2, p3);
+			if (dynamic_cast<CSquare*>(clipboard)) { //bey check anhy figure fel clipboard
+		Point p2;
+		Point p3;
+		clipboard->movecrdnts(pClicked, p2, p3);
 
-			CLine* L = new CLine(pClicked, p2, clipboard->getGfxInfo ()); //bye3mel line gedeed bel crdnts el gedeeda bel dynamic allocation eashan yeb2a "copied"
+		CSquare* S = new CSquare(pClicked, p2, clipboard->getGfxInfo()); //bye3mel line gedeed bel crdnts el gedeeda bel dynamic allocation eashan yeb2a "copied"
 
-			
-			pManager->AddFigure(L); //bey add el fig el gedeed lel list
 
-			pOut->PrintMessage("Line is pasted");
+		pManager->AddFigure(S); //bey add el fig el gedeed lel list
 
-		}
-		else if (dynamic_cast<CTriangle*>(clipboard)) {
-			Point p2;
-			Point p3;
+		pOut->PrintMessage("Square is pasted");
 
-			clipboard->shftcrdnts(pClicked, p2, p3);
+	}
+	else if (dynamic_cast<CTriangle*>(clipboard)) {
+		Point p2;
+		Point p3;
 
-			CTriangle* T = new CTriangle(pClicked, p2, p3, clipboard->getGfxInfo());//same tri bas crdnts gedeeda
+		clipboard->movecrdnts(pClicked, p2, p3);
 
-			pManager->AddFigure(T);
+		CTriangle* T = new CTriangle(pClicked, p2, p3, clipboard->getGfxInfo());//same tri bas crdnts gedeeda
 
-			pOut->PrintMessage("Triangle is pasted ");
-		}
-		else if (dynamic_cast<CRectangle*>(clipboard)) { //beykarar el process de le kol el figs
-			Point p2;
-			Point p3;
+		pManager->AddFigure(T);
 
-			clipboard->shftcrdnts(pClicked, p2, p3);
-			
-			CRectangle* R = new CRectangle(pClicked, p2, clipboard->getGfxInfo()); //same rect bas crdnts gedeeda
+		pOut->PrintMessage("Triangle is pasted ");
+	}
+	else if (dynamic_cast<CCircle*>(clipboard)) {
+		Point p2;
+		Point p3;
 
-			pManager->AddFigure(R);
+		clipboard->movecrdnts(pClicked, p2, p3);
 
-			pOut->PrintMessage("Rectangle is pasted");
-		}
-		
-		else {
-			CCircle* C = new CCircle(pClicked, clipboard->getGfxInfo());  //same circ bas crdnts gedeeda
+		CCircle* H = new CCircle(pClicked, p2, p3, clipboard->getGfxInfo());//same tri bas crdnts gedeeda
 
-			pManager->AddFigure(C);
-			pOut->PrintMessage("Circle is pasted");
-		}
+		pManager->AddFigure(H);
+
+		pOut->PrintMessage("Circle is pasted ");
+	}
+	else  {
+
+		CHexagon* H = new CHexagon(pClicked, p2, p3, clipboard->getGfxInfo());//same tri bas crdnts gedeeda
+
+		pManager->AddFigure(H);
+
+		pOut->PrintMessage("Hexagon is pasted ");
 	}
 	
 }
