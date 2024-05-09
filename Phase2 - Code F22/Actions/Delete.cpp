@@ -1,5 +1,8 @@
 #include "Delete.h"
-#include"Figures/CFigure.h"
+#include "SelectAction.h"
+#include "ApplicationManager.h"
+#include "GUI\input.h"
+#include "GUI\Output.h"
 
 
 Delete::Delete(ApplicationManager* pApp) :Action(pApp) {}
@@ -9,23 +12,25 @@ void Delete::ReadActionParameters() {}
 void Delete::Execute()
 {
 	Output* pOut = pManager->GetOutput();
-	CFigure* selectedFig = pManager->getSelectedFig(selectedFig);//bye2ra el ragel medakhal eh
-
-	if(selectedFig == NULL)
+	for (int i = 0; i < pManager->GetFigCount(); i++)
 	{
-		pOut->PrintMessage("No figs selected, please select a fig");
+		CFigure* SelectFig = pManager->GetSelectedFigList(i);//bye2ra el ragel medakhal eh
+
+		if (SelectFig == NULL) //beyshof hwa fe selected figure wala la
+		{
+			pOut->PrintMessage("No figs selected, please select a fig");
+
+		}
+
+		else
+		{
+			pManager->dltfig(SelectFig);//bey delete el fig 
+			pManager->SelectFig(NULL);//bey unselect
+			pOut->PrintMessage("figure is deleted");
+
+			SelectFig->SetSelected(false); //bey unselect 
+			delete SelectFig;
+		}
 
 	}
-
-	else 
-	{
-		pManager->dltfig(selectedFig);//bey delete el fig 
-		pManager->setSelectedFig(NULL);//bey unselect
-		pOut->PrintMessage("figure is deleted");
-
-		selectedFig->SetSelected(false); //bey unselect 
-		delete selectedFig;
-	}
-	
 }
-
