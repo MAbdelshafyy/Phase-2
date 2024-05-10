@@ -1,11 +1,14 @@
-#include "Paste.h"
+#include"Paste.h"
 #include"ApplicationManager.h"
-#include"GUI/Input.h"
+#include"Figures/CFigure.h"
 #include"GUI/Output.h"
+#include"GUI/Input.h"
 #include"CTriangle.h"
 #include"CCircle.h"
 #include"CHexagon.h"
 #include"CSquare.h"
+#include"Actions/Action.h"
+#include"DEFS.h"
 
 Paste::Paste(ApplicationManager* pApp) :Action(pApp) {}
 
@@ -34,7 +37,7 @@ void Paste::Execute()
 			
 			clipboard->movecrdnts(pClicked, p2, p3);
 
-			CSquare* S = new CSquare(pClicked, p2, clipboard->getGfxInfo());//bye3mel line gedeed bel crdnts el gedeeda bel dynamic allocation eashan yeb2a "copied"
+			CSquare* S = new CSquare(p2,clipboard->getGfxInfo());//bye3mel line gedeed bel crdnts el gedeeda bel dynamic allocation eashan yeb2a "copied"
 
 
 			pManager->AddFigure(S); //bey add el fig el gedeed lel list
@@ -46,10 +49,11 @@ void Paste::Execute()
 		{
 			Point p2;
 			Point p3;
+			Point p4;
 
 			clipboard->movecrdnts(pClicked, p2, p3);
 
-			CTriangle* T = new CTriangle(pClicked, p2, p3, clipboard->getGfxInfo());//same tri bas crdnts gedeeda
+			CTriangle* T = new CTriangle(p2, p3, p4,clipboard->getGfxInfo());//same tri bas crdnts gedeeda
 
 			pManager->AddFigure(T);
 
@@ -75,10 +79,12 @@ void Paste::Execute()
 			Point p3;
 			clipboard->movecrdnts(pClicked, p2, p3);
 
-			CHexagon* H = new CHexagon(pClicked,p2,p3, clipboard->getGfxInfo());//same hexa bas crdnts gedeeda
+			CHexagon* H = new CHexagon(p2,clipboard->getGfxInfo());//same hexa bas crdnts gedeeda
 
 			pManager->AddFigure(H);
 
 			pOut->PrintMessage("Hexagon is pasted ");
 		}
 }
+
+	
