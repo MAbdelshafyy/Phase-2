@@ -35,12 +35,16 @@ public:
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
+	int GetFigureCount();
 
-		void ClearGraph();          //de el clear all 
-         void setClipboard(CFigure* ptr);
+
+	/// Selected Figures functions
+
+	void ClearGraph();          //de el clear all 
+     void setClipboard(CFigure* ptr);
 	CFigure* getClipboard(CFigure* ptr);
-void setSelectedFig(CFigure* ptr);//setter w getter el clipboard
-CFigure* getSelectedFig(CFigure* SelectedFig) {
+    void setSelectedFig(CFigure* ptr);//setter w getter el clipboard
+    CFigure* getSelectedFig(CFigure* SelectedFig) {
 	return SelectedFig;
 }
 void dltfig(CFigure* selectedFig) {}//delete el figure el selected
@@ -50,6 +54,10 @@ void dltfig(CFigure* selectedFig) {}//delete el figure el selected
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window	
+
+	// -- Save/Load Functions
+void SaveAll(ofstream& OutFile);
+
 };
 
 #endif

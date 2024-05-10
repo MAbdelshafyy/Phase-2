@@ -1,5 +1,5 @@
 #include "CTriangle.h"
-#include "CTriangle.h"
+#include <string>
 
 CTriangle::CTriangle(Point Corner1, Point Corner2, Point Corner3, GfxInfo FigGfxInfo) :CFigure(FigGfxInfo)
 {
@@ -12,6 +12,27 @@ void CTriangle::Draw(Output* pOut) const
 {
 	//Call Output::DrawTri to draw a square on the screen
 	pOut->DrawTri(P1, P2, P3, FigGfxInfo, Selected);
+}
+
+void CTriangle::Save(ofstream &OutFile)
+{
+	/// Getting color and fillcolor
+	string DrawCOLOR = getColorType(FigGfxInfo.DrawClr);
+	
+
+	///Saving parameters in file as follows ( TRIANGLE    "Corner 1"    "Corner 2"    "Corner 3"    "Drawing color"   "Filling color if filled" ////
+
+	if (FigGfxInfo.isFilled == true) 
+	{
+		string FillCOLOR = getColorType(FigGfxInfo.FillClr);
+		OutFile << "TRIANGLE" << '\t' << P1 << '\t' << P2 << '\t' << P3 << '\t' << DrawCOLOR << '\t' << FillCOLOR << endl;
+	}
+	else
+	{
+		OutFile << "TRIANGLE" << '\t' << P1 << '\t' << P2 << '\t' << P3 << '\t' << DrawCOLOR << '\t' << "NO FILL" << endl;
+
+	}
+
 }
 
 bool CTriangle::PointIn(Point p)

@@ -13,6 +13,9 @@ public:
 	virtual void Draw(Output* pOut) const; ///Draw
 	virtual bool PointIn(Point p);
 	virtual void movecrdnts(Point pClicked, Point p2, Point p3) ;
+	virtual void Save(ofstream& OutFile);
+    virtual void Load(ifstream& InFile);
+    virtual void PrintInfo(Output* pOut);
 };
 
 #endif

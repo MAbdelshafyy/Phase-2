@@ -1,5 +1,6 @@
 #include "CCircle.h"
 #include <cmath>
+#include <string>
 #include "CCircle.h"
 
 
@@ -30,5 +31,29 @@ bool CCircle::PointIn(Point p)
 }
 
 void CCircle::movecrdnts(Point pClicked, Point p2, Point p3)
+{}
+
+void CCircle::Save(ofstream& OutFile)
 {
+	Point Center;
+	Center.x = (P1.x + P2.x) / 2;
+	Center.y = (P1.y + P2.y) / 2;
+	double radius = sqrt(pow(P2.x - P1.x, 2) + pow(P2.y - P1.y, 2)) / 2.0;
+	/// Saving parameters
+	string DrawCOLOR = getColorType(FigGfxInfo.DrawClr);
+	
+
+	/// Format of saved parameters: Circ  "ID of circ"    "x coord of center"    "y coord of center"   "radius"    "Drawing color"    "if filled filling color"
+	if (FigGfxInfo.isFilled == true)
+	{
+		string FillCOLOR = getColorType(FigGfxInfo.FillClr);
+		OutFile << "CIRC" << '\t' << ID << '\t' << Center.x << '\t' << Center.y << '\t' << radius << '\t' << DrawCOLOR << '\t' << FillCOLOR << endl;
+	}
+	else 
+	{
+		OutFile << "CIRC" << '\t' << ID << '\t' << Center.x << '\t' << Center.y << '\t' << radius << '\t' << DrawCOLOR << '\t' << "NO FILL" << endl;
+
+	}
 }
+
+

@@ -4,6 +4,7 @@
 #include"GUI/Output.h"
 #include"Figures/CFigure.h"
 #include "CHexagon.h"
+#include <string>
 
 
 
@@ -56,6 +57,26 @@ bool CHexagon::PointIn(Point p)
 	else
 		return false;
 }
+
+void CHexagon::Save(ofstream& OutFile)
+{
+	/// Get parameters  ///
+	string DrawCOLOR = getColorType(FigGfxInfo.DrawClr);
+
+
+	/// save format is ( "HEX"    "ID of hex"     "Center"      "Drawing color"    "fillcolor if filled" ///
+	if (FigGfxInfo.isFilled == true)
+	{
+		string FillCOLOR = getColorType(FigGfxInfo.FillClr);
+		OutFile << "HEX" << '\t' << ID << '\t' << P1 << '\t' << DrawCOLOR << '\t' << FillCOLOR << endl;
+	}
+	else
+	{
+		OutFile << "HEX" << '\t' << ID << '\t' << P1 << '\t' << DrawCOLOR << '\t' << "NO FILL" << endl;
+
+	}
+}
+
 void CHexagon::movecrdnts(Point pClicked, Point p2, Point p3)
 {
 

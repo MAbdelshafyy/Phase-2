@@ -19,7 +19,11 @@ public:
 
 	void SetSelected(bool s);	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
-virtual void getCopy();
+    virtual void getCopy();
+    void SetID(int id);
+    int GetID() const;
+    string getColorType(color)const;
+    color getColorObj(string) const;
 	virtual void Draw(Output* pOut) const  = 0 ;		//Draw the figure
 	
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
@@ -34,11 +38,10 @@ GfxInfo getGfxInfo()const;// beygeeb arar el fig
 	///Decide the parameters that you should pass to each function	
 
 
-	//virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
-	//virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
-virtual void Delete(CFigure* Selectedfig) = 0;//Draw the figure
-	
-	//virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
+	virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
+	virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
+    virtual void Delete(CFigure* Selectedfig) = 0;//Draw the figure
+	virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 };
 
 #endif

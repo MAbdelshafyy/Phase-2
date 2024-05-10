@@ -70,6 +70,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DO_PST:
 			pAct = new Paste(this);
 			break;
+
+		case DO_SAVE:
+
+	        pAct = new SaveAction(this);
+	        break;
+
 		case EXIT:
 			///create ExitAction here
 			
@@ -102,8 +108,12 @@ void ApplicationManager::ClearGraph() {
 //Add a figure to the list of figures
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
-	if(FigCount < MaxFigCount )
-		FigList[FigCount++] = pFig;	
+	if (FigCount < MaxFigCount)
+	{
+		FigList[FigCount] = pFig;
+		FigList[FigCount]->SetID(FigCount);
+		FigCount++;
+	}
 }
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const
@@ -132,6 +142,10 @@ void ApplicationManager::setClipboard(CFigure* ptr) {
 void ApplicationManager::setSelectedFig(CFigure* ptr)
 {}
 
+int ApplicationManager::GetFigureCount() 
+{
+	return FigCount;
+}
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//
@@ -141,6 +155,15 @@ void ApplicationManager::UpdateInterface() const
 {	
 	for(int i=0; i<FigCount; i++)
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
+}
+
+void ApplicationManager::SaveAll(ofstream& OutFile)
+{
+	//Loop on each figure ,then saving it 
+	for (int i = 0; i < FigCount; i++)
+	{
+		FigList[i]->Save(OutFile);
+	}
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input
