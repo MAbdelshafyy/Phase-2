@@ -11,6 +11,8 @@ private:
 public:
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
 	virtual void Draw(Output* pOut) const;
+	virtual void movecrdnts(Point pClicked, Point p2, Point p3) = 0;
+
 };
 
 #endif
