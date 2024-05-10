@@ -12,3 +12,11 @@ void CRectangle::Draw(Output* pOut) const
 	//Call Output::DrawRect to draw a rectangle on the screen	
 	pOut->DrawRect(Corner1, Corner2, FigGfxInfo, Selected);
 }
+
+bool CRectangle::PointIn(Point p)
+{
+	if ((p.x >= Corner1.x && p.x <= Corner2.x) && (p.y >= Corner1.y && p.y <= Corner2.y))
+		return true;
+	else
+		return false;
+}
