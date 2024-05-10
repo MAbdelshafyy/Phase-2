@@ -117,10 +117,17 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 
 	return NULL;
 }
-void ApplicationManager::setClipboard(CFigure* ptr) {
-	
-	Clipboard = ptr;
+CFigure* ApplicationManager::getClipboard(CFigure* Clipboard)
+{
+	return Clipboard;
 }
+
+void ApplicationManager::setClipboard(CFigure* ptr) {
+
+	Clipboard = ptr;
+	
+}
+
 
 void ApplicationManager::setSelectedFig(CFigure* ptr)
 {}
