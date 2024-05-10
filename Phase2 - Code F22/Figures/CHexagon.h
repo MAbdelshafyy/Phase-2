@@ -13,7 +13,7 @@ public:
 
 	CHexagon(Point Center, GfxInfo FigureGfxInfo);
 	virtual void Draw(Output* pOut) const;
-	virtual void movecrdnts(Point pClicked, Point p2, Point p3) = 0;
+	virtual void movecrdnts(Point pClicked, Point p2, Point p3) ;
 
 
 };
