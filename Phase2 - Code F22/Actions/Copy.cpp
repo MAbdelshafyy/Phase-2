@@ -1,9 +1,6 @@
-#include "Copy.h"
-#include"GUI/Input.h"
-#include"GUI/Output.h"
+#include"Copy.h"
 #include"ApplicationManager.h"
 #include"SelectAction.h"
-#include"Figures/CFigure.h"
 
 Copy::Copy(ApplicationManager* pApp) :Action(pApp) {}
 
