@@ -9,6 +9,7 @@ class SaveAction : public Action
 private:
 	ofstream OutFile;
 	string FileName;
+	string GetColorType(color type) const;
 public:
 	SaveAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

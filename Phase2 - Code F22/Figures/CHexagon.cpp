@@ -1,18 +1,12 @@
-#include"CHexagon.h"
-#include <cmath>
-#include "DEFS.h"
-#include"GUI/Output.h"
-#include"Figures/CFigure.h"
 #include "CHexagon.h"
-#include <string>
+#include <cmath>
+#include <fstream>
 
 
-
-CHexagon::CHexagon(Point Center,GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
+CHexagon::CHexagon(Point Center, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	P1 = Center;
 }
-
 
 void CHexagon::Draw(Output* pOut) const
 {
@@ -58,26 +52,37 @@ bool CHexagon::PointIn(Point p)
 		return false;
 }
 
+void CHexagon::PrintInfo(Output* pOut)
+{
+	string s = ("ID: " + to_string(ID) + ", Hexagon, Border color: " + GetColorType(GetDrawClr())) + ", Filling color: ";
+	if (FigGfxInfo.isFilled)
+		s += GetColorType(GetFillClr());
+	else
+		s += "not filled";
+	pOut->PrintMessage(s);
+}
+
 void CHexagon::Save(ofstream& OutFile)
 {
 	/// Get parameters  ///
-	string DrawCOLOR = getColorType(FigGfxInfo.DrawClr);
+	string DrawCOLOR = GetColorType(FigGfxInfo.DrawClr);
 
 
 	/// save format is ( "HEX"    "ID of hex"     "Center"      "Drawing color"    "fillcolor if filled" ///
 	if (FigGfxInfo.isFilled == true)
 	{
-		string FillCOLOR = getColorType(FigGfxInfo.FillClr);
-		OutFile << "HEX" << '\t' << ID << '\t' << P1 << '\t' << DrawCOLOR << '\t' << FillCOLOR << endl;
+		string FillCOLOR = GetColorType(FigGfxInfo.FillClr);
+		OutFile << "HEX" << '\t' << ID << '\t' << P1.x << '\t' << P1.y << '\t' << DrawCOLOR << '\t' << FillCOLOR << endl;
 	}
 	else
 	{
-		OutFile << "HEX" << '\t' << ID << '\t' << P1 << '\t' << DrawCOLOR << '\t' << "NO FILL" << endl;
+		OutFile << "HEX" << '\t' << ID << '\t' << P1.x << '\t' << P1.y << '\t' << DrawCOLOR << '\t' << "NO FILL" << endl;
 
 	}
 }
 
-void CHexagon::movecrdnts(Point pClicked, Point p2, Point p3)
+int CHexagon::ShapeCounter()
 {
-
+	return 0;
 }
+

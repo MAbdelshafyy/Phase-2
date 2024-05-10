@@ -8,7 +8,40 @@
 #include <string>
 
 
-SaveAction::SaveAction(ApplicationManager* pApp):Action(pApp)
+string SaveAction::GetColorType(color type) const
+{
+	if (type == RED)
+	{
+		return "RED";
+	}
+
+	if (type == BLUE)
+	{
+		return "BLUE";
+	}
+
+	if (type == BLACK)
+	{
+		return "BLACK";
+	}
+
+	if (type == YELLOW)
+	{
+		return "YELLOW";
+	}
+
+	if (type == ORANGE)
+	{
+		return "ORANGE";
+	}
+
+	if (type == GREEN)
+	{
+		return "GREEN";
+	}
+}
+
+SaveAction::SaveAction(ApplicationManager* pApp) :Action(pApp)
 {}
 
 void SaveAction::ReadActionParameters()
@@ -33,15 +66,15 @@ void SaveAction::Execute() {
 
 	if (OutFile.is_open())
 	{
-		int numfig = pManager->GetFigureCount();  /// Number of figures by the appmanager pointer
+		int numfig = pManager->GetFigCount();  /// Number of figures by the appmanager pointer
 
 		///Getting the draw color from the UI and putting it as the no.1 line
-		string DrawCOLOR = CFigure::getColorType(UI.DrawColor);   
+		string DrawCOLOR = GetColorType(UI.DrawColor);
 		OutFile << DrawCOLOR;
 
 		///Getting the fill color from the UI and putting it as the no.2 line
-		string FillCOLOR = CFigure::getColorType(UI.FillColor);  
-		OutFile <<'\t'<< FillCOLOR<<endl;
+		string FillCOLOR = GetColorType(UI.FillColor);
+		OutFile << '\t' << FillCOLOR << endl;
 
 		///Getting the number of figures and putting it as the no.3 line
 		OutFile << '\t' << numfig << endl;
@@ -49,7 +82,8 @@ void SaveAction::Execute() {
 		///Using the saveall function from app manager for every figure to save itself 
 		pManager->SaveAll(OutFile);
 
-		pOut->PrintMessage("File" <<" "<<FileName<<".txt"<< " "<<" has been saved successfully");
+		string s = "File: " + FileName + ".txt" + " " + " has been saved successfully";
+		pOut->PrintMessage(s);
 		OutFile.close();
 
 	}
@@ -57,6 +91,9 @@ void SaveAction::Execute() {
 	{
 		pOut->PrintMessage("File Can't be Saved");
 	}
+
+
+
 
 
 

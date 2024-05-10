@@ -1,15 +1,13 @@
 #include "CCircle.h"
 #include <cmath>
-#include <string>
-#include "CCircle.h"
+#include <fstream>
 
 
-CCircle::CCircle(Point Point1,Point Point2, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo) ///Initializer for constructor "inherited class"
+CCircle::CCircle(Point Point1, Point Point2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo) ///Initializer for constructor "inherited class"
 {
 	P1 = Point1;
 	P2 = Point2;
 }
-
 
 void CCircle::Draw(Output* pOut) const
 {
@@ -30,8 +28,15 @@ bool CCircle::PointIn(Point p)
 		return false;
 }
 
-void CCircle::movecrdnts(Point pClicked, Point p2, Point p3)
-{}
+void CCircle::PrintInfo(Output* pOut)
+{
+	string s = ("ID: " + to_string(ID) + ", Circle, Border color: " + GetColorType(GetDrawClr())) + ", Filling color: ";
+	if (FigGfxInfo.isFilled)
+		s += GetColorType(GetFillClr());
+	else
+		s += "not filled";
+	pOut->PrintMessage(s);
+}
 
 void CCircle::Save(ofstream& OutFile)
 {
@@ -40,20 +45,23 @@ void CCircle::Save(ofstream& OutFile)
 	Center.y = (P1.y + P2.y) / 2;
 	double radius = sqrt(pow(P2.x - P1.x, 2) + pow(P2.y - P1.y, 2)) / 2.0;
 	/// Saving parameters
-	string DrawCOLOR = getColorType(FigGfxInfo.DrawClr);
-	
+	string DrawCOLOR = GetColorType(FigGfxInfo.DrawClr);
+
 
 	/// Format of saved parameters: Circ  "ID of circ"    "x coord of center"    "y coord of center"   "radius"    "Drawing color"    "if filled filling color"
 	if (FigGfxInfo.isFilled == true)
 	{
-		string FillCOLOR = getColorType(FigGfxInfo.FillClr);
+		string FillCOLOR = GetColorType(FigGfxInfo.FillClr);
 		OutFile << "CIRC" << '\t' << ID << '\t' << Center.x << '\t' << Center.y << '\t' << radius << '\t' << DrawCOLOR << '\t' << FillCOLOR << endl;
 	}
-	else 
+	else
 	{
 		OutFile << "CIRC" << '\t' << ID << '\t' << Center.x << '\t' << Center.y << '\t' << radius << '\t' << DrawCOLOR << '\t' << "NO FILL" << endl;
 
 	}
 }
 
-
+int CCircle::ShapeCounter()
+{
+	return 0;
+}

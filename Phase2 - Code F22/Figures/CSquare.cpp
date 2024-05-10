@@ -1,12 +1,11 @@
 #include "CSquare.h"
-#include <string>
+#include <fstream>
 
-CSquare::CSquare(Point Center ,GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
+
+CSquare::CSquare(Point Center, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center1 = Center;
 }
-
-
 
 void CSquare::Draw(Output* pOut) const
 {
@@ -19,25 +18,36 @@ bool CSquare::PointIn(Point p)
 	return ((p.x >= Center1.x - 100) && (p.x <= Center1.x + 100) && (p.y >= Center1.y - 100) && (p.y <= Center1.y + 100));
 }
 
+void CSquare::PrintInfo(Output* pOut)
+{
+	string s = ("ID: " + to_string(ID) + ", Square, Border color: " + GetColorType(GetDrawClr())) + ", Filling color: ";
+	if (FigGfxInfo.isFilled)
+		s += GetColorType(GetFillClr());
+	else
+		s += "not filled";
+	pOut->PrintMessage(s);
+}
+
 void CSquare::Save(ofstream& OutFile)
 {
 	//// saving parameters
-	string DrawCOLOR = getColorType(FigGfxInfo.DrawClr);
-	
+	string DrawCOLOR = GetColorType(FigGfxInfo.DrawClr);
+
 
 	/// Format of saved parameters ( Square   "ID of square"   "Center of square"    "Draw color of square"  "Fill color if filled"  
 	if (FigGfxInfo.isFilled == true)
 	{
-		string FillCOLOR = getColorType(FigGfxInfo.FillClr);
-		OutFile << "SQUARE" << '\t' << ID << '\t' << Center1 << '\t' << DrawCOLOR << '\t' << FillCOLOR << endl;
+		string FillCOLOR = GetColorType(FigGfxInfo.FillClr);
+		OutFile << "SQUARE" << '\t' << ID << '\t' << Center1.x << '\t' << Center1.y << '\t' << DrawCOLOR << '\t' << FillCOLOR << endl;
 	}
 	else
 	{
-		OutFile << "SQUARE" << '\t' << ID << '\t' << Center1 << '\t' << DrawCOLOR << '\t' << "NO FILL" << endl;
+		OutFile << "SQUARE" << '\t' << ID << '\t' << Center1.x << '\t' << Center1.y << '\t' << DrawCOLOR << '\t' << "NO FILL" << endl;
 
 	}
 }
 
-void CSquare::movecrdnts(Point pClicked, Point p2, Point p3)
+int CSquare::ShapeCounter()
 {
+	return 0;
 }

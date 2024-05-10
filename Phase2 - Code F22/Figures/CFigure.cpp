@@ -1,6 +1,4 @@
 #include "CFigure.h"
-#include <fstream>
-#include <string>
 
 CFigure::CFigure(GfxInfo FigureGfxInfo)
 { 
@@ -9,29 +7,38 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 }
 
 void CFigure::SetSelected(bool s)
-{	Selected = s; }
+{	Selected = s;
+}
 
 bool CFigure::IsSelected() const
 {	return Selected; }
-void CFigure::getCopy()
-{}
+
+double CFigure::getTriangleArea(Point A, Point B, Point C)
+{
+	return abs((A.x * (B.y - C.y) + B.x * (C.y - A.y) + C.x * (A.y - B.y)) / 2);
+}
+
+void CFigure::DeleteFigure(CFigure* pFig)
+{
+	delete pFig;
+}
+
+int CFigure::GetID()
+{
+	return ID;
+}
 
 void CFigure::SetID(int id)
 {
 	ID = id;
 }
 
-int CFigure::GetID() const
+string CFigure::GetColorType(color type)
 {
-	return ID;
-}
-
-string CFigure::getColorType(color type) const
-{
-	if (type == RED) 
+	if (type == RED)
 	{
 		return "RED";
-	}	
+	}
 
 	if (type == BLUE)
 	{
@@ -43,14 +50,14 @@ string CFigure::getColorType(color type) const
 		return "BLACK";
 	}
 
-	if (type == YELLOW) 
+	if (type == YELLOW)
 	{
 		return "YELLOW";
 	}
-	
+
 	if (type == ORANGE)
 	{
-		return "ORANGE"
+		return "ORANGE";
 	}
 
 	if (type == GREEN)
@@ -59,38 +66,15 @@ string CFigure::getColorType(color type) const
 	}
 }
 
-color CFigure::getColorObj(string obj) const
+
+color CFigure::GetDrawClr()
 {
-	if (obj == "RED")
-	{
-		return RED;
-	}
+	return FigGfxInfo.DrawClr;
+}
 
-	if (obj == "BLUE")
-	{
-		return BLUE;
-	}
-
-	if (obj == "BLACK")
-	{
-		return BLACK;
-	}
-
-	if (obj == "YELLOW")
-	{
-		return YELLOW;
-	}
-
-	if (obj == "ORANGE")
-	{
-		return ORANGE;
-	}
-
-	if (obj == "GREEN")
-	{
-		return GREEN;
-	}
-	
+color CFigure::GetFillClr()
+{
+	return FigGfxInfo.FillClr;
 }
 
 void CFigure::ChngDrawClr(color Dclr)
@@ -100,12 +84,5 @@ void CFigure::ChngFillClr(color Fclr)
 {	
 	FigGfxInfo.isFilled = true;
 	FigGfxInfo.FillClr = Fclr; 
-}
-GfxInfo CFigure::getGfxInfo() const
-{
-	return GfxInfo();
-}
-
-void CFigure::Delete(CFigure* SelectedFig) {
 }
 

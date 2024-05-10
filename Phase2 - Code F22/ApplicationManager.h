@@ -14,8 +14,15 @@ class ApplicationManager
 private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
+	int IDCount;
 
-	CFigure* SelectedFig; //Pointer to the selected figure
+	CFigure* SelectedFig;
+	CFigure* SelectedFigList[10];
+
+	color Color;
+
+	int SelectedFigCount = 0;
+	
 
 	//Pointers to Input and Output classes
 	Input *pIn;
@@ -26,38 +33,34 @@ private:
 public:	
 	ApplicationManager(); 
 	~ApplicationManager();
-	
 	// -- Action-Related Functions
 	//Reads the input command from the user and returns the corresponding action type
 	ActionType GetUserAction() const;
 	void ExecuteAction(ActionType) ; //Creates an action and executes it
 	
+
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
-	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
-	int GetFigureCount();
+	int GetFigCount();
+	CFigure* GetFigList(int i);
+	CFigure *GetFigure(Point p) const; //Search for a figure given a point inside the figure
 
+	void SelectFig(CFigure* pFig);
+	void UnselectFig(CFigure* pFig);
+	void UnselectAll();
+	int GetSelectedFigCount();
+	CFigure* GetSelectedFigs(int i);
 
-	/// Selected Figures functions
+	void SaveAll(ofstream& OutFile);
 
-	void ClearGraph();          //de el clear all 
-     void setClipboard(CFigure* ptr);
-	CFigure* getClipboard(CFigure* ptr);
-    void setSelectedFig(CFigure* ptr);//setter w getter el clipboard
-    CFigure* getSelectedFig(CFigure* SelectedFig) {
-	return SelectedFig;
-}
-void dltfig(CFigure* selectedFig) {}//delete el figure el selected
+	void dltfig(CFigure* selectedFig) {}//delete el figure el selected
 
-	
+	color GetColor();
+		
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window	
-
-	// -- Save/Load Functions
-void SaveAll(ofstream& OutFile);
-
 };
 
 #endif

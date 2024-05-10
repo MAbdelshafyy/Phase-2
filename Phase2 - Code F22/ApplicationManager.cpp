@@ -1,12 +1,14 @@
 #include "ApplicationManager.h"
 #include "Actions\AddRectAction.h"
-#include "Actions\AddHexAction.h"
-#include "Actions\AddCircAction.h"
-#include "Actions\AddSquareAction.h"
-#include "Actions\AddTriAction.h"
-#include "Actions\Copy.h"
-#include "Actions\Paste.h"
-#include "Actions\Delete.h"
+#include "SelectAction.h"
+#include "AddCircAction.h"
+#include "AddHexAction.h"
+#include "AddSquareAction.h"
+#include "AddTriAction.h"
+#include "BorderAction.h"
+#include "FillingAction.h"
+#include "SaveAction.h"
+
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -16,11 +18,15 @@ ApplicationManager::ApplicationManager()
 	pIn = pOut->CreateInput();
 	
 	FigCount = 0;
+	IDCount = 0;
 		
 	//Create an array of figure pointers and set them to NULL		
-	for(int i=0; i<MaxFigCount; i++)
-		FigList[i] = NULL;	
+	for (int i = 0; i < MaxFigCount; i++) {
+		FigList[i] = NULL;
+	}
 }
+
+
 
 //==================================================================================//
 //								Actions Related Functions							//
@@ -40,7 +46,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	switch (ActType)
 	{
 		case DRAW_RECT:
-			pAct = new AddRectAction(this);    
+			pAct = new AddRectAction(this);
 			break;
 
 		case DRAW_HEX:
@@ -58,27 +64,62 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DRAW_TRI:
 			pAct = new AddTriAction(this);
 			break;
-		
-	         case DO_DLT:
-			pAct = new Delete(this);
+
+		case DO_SLCT:
+			pAct = new SelectAction(this);
 			break;
-		
-		case DO_CPY:
-			pAct = new Copy(this);
+
+		case DO_BRDR:
+			pAct = new BorderAction(this);
 			break;
-		
-		case DO_PST:
-			pAct = new Paste(this);
+
+		case DO_FILL:
+			pAct = new FillingAction(this);
+			break;
+
+		case CLR_BLCK:
+			pOut->PrintMessage("Select change border or change filling first");
+			break;
+
+		case CLR_YLLW:
+			pOut->PrintMessage("Select change border or change filling first");
+			break;
+
+		case CLR_ORNG:
+			pOut->PrintMessage("Select change border or change filling first");
+			break;
+
+		case CLR_RED:
+			pOut->PrintMessage("Select change border or change filling first");
+			break;
+
+		case CLR_GRN:
+			pOut->PrintMessage("Select change border or change filling first");
+			break;
+
+		case CLR_BLUE:
+			pOut->PrintMessage("Select change border or change filling first");
 			break;
 
 		case DO_SAVE:
+			pAct = new SaveAction(this);
+			break;
 
-	        pAct = new SaveAction(this);
-	        break;
+		case TO_PLAY:
+			pOut->CreatePlayToolBar();
+			break;
 
 		case EXIT:
 			///create ExitAction here
-			
+			pOut->PrintMessage("Exiting..");
+			UnselectAll();
+			for (int i = 0; i < FigCount - 1; i++) {
+				delete FigList[i];
+			}
+			break;
+
+		case TO_DRAW:
+			pOut->CreateDrawToolBar();
 			break;
 		
 		case STATUS:	//a click on the status bar ==> no action
@@ -93,14 +134,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = NULL;
 	}
 }
-void ApplicationManager::ClearGraph() {
-	for (int i = 0; i < FigCount; i++) {
-		delete FigList[i];
-	}
-	FigCount = 0;
-	Clipboard = NULL;
-}
-
 //==================================================================================//
 //						Figures Management Functions								//
 //==================================================================================//
@@ -108,44 +141,84 @@ void ApplicationManager::ClearGraph() {
 //Add a figure to the list of figures
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
-	if (FigCount < MaxFigCount)
-	{
-		FigList[FigCount] = pFig;
-		FigList[FigCount]->SetID(FigCount);
-		FigCount++;
+	if (FigCount < MaxFigCount) {
+		pFig->SetID(++IDCount);
+		FigList[FigCount++] = pFig;
 	}
 }
+int ApplicationManager::GetFigCount()
+{
+	return FigCount;
+}
+CFigure* ApplicationManager::GetFigList(int i)
+{
+	return FigList[i];
+}
 ////////////////////////////////////////////////////////////////////////////////////
-CFigure *ApplicationManager::GetFigure(int x, int y) const
+CFigure *ApplicationManager::GetFigure(Point p) const
 {
 	//If a figure is found return a pointer to it.
 	//if this point (x,y) does not belong to any figure return NULL
 
+	for (int i = FigCount - 1; i >= 0; i--) {
+		if (FigList[i]->PointIn(p) == true) {
+			return FigList[i];
+		}
+	}
+	return NULL;
 
 	//Add your code here to search for a figure given a point x,y	
 	//Remember that ApplicationManager only calls functions do NOT implement it.
-
-	return NULL;
 }
-CFigure* ApplicationManager::getClipboard(CFigure* Clipboard)
+
+void ApplicationManager::SelectFig(CFigure* pFig)
 {
-	return Clipboard;
+	SelectedFigList[SelectedFigCount] = pFig;
+	SelectedFigCount++;
 }
 
-void ApplicationManager::setClipboard(CFigure* ptr) {
-
-	Clipboard = ptr;
-	
-}
-
-
-void ApplicationManager::setSelectedFig(CFigure* ptr)
-{}
-
-int ApplicationManager::GetFigureCount() 
+void ApplicationManager::UnselectFig(CFigure* pFig)
 {
-	return FigCount;
+	int c;
+	for (int i = 0; i < SelectedFigCount; i++) {
+		if (SelectedFigList[i] == pFig) {
+			c = i;
+		}
+	}
+	for (int i = c; i < SelectedFigCount - 1; i++) {
+		SelectedFigList[i] = SelectedFigList[i + 1];
+	}
+	SelectedFigCount--;
 }
+
+void ApplicationManager::UnselectAll()
+{
+	for (int i = 0; i < SelectedFigCount - 1; i++) {
+		delete SelectedFigList[i];
+	}
+	SelectedFigCount = 0;
+}
+
+int ApplicationManager::GetSelectedFigCount()
+{
+	return SelectedFigCount;
+}
+
+CFigure* ApplicationManager::GetSelectedFigs(int i)
+{
+	return SelectedFigList[i];
+}
+
+void ApplicationManager::SaveAll(ofstream& OutFile)
+{
+	//Loop on each figure ,then saving it 
+	for (int i = 0; i < FigCount; i++)
+	{
+		FigList[i]->Save(OutFile);
+	}
+}
+
+
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//
@@ -156,14 +229,9 @@ void ApplicationManager::UpdateInterface() const
 	for(int i=0; i<FigCount; i++)
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
 }
-
-void ApplicationManager::SaveAll(ofstream& OutFile)
+color ApplicationManager::GetColor()
 {
-	//Loop on each figure ,then saving it 
-	for (int i = 0; i < FigCount; i++)
-	{
-		FigList[i]->Save(OutFile);
-	}
+	return Color;
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input

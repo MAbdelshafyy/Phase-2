@@ -11,11 +11,10 @@ private:
 public:
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
 	virtual void Draw(Output* pOut) const;
-	virtual void movecrdnts(Point pClicked, Point p2, Point p3) = 0;
+	virtual bool PointIn(Point p);
+	virtual void PrintInfo(Output* pOut);
 	virtual void Save(ofstream& OutFile);
-    virtual void Load(ifstream& InFile);
-    virtual void PrintInfo(Output* pOut);
-
+	virtual int ShapeCounter();
 };
 
 #endif
