@@ -37,10 +37,8 @@ public:
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 
 		void ClearGraph();          //de el clear all 
-           void setClipboard(CFigure*ptr);      // setter w getter el clipboard
-          CFigure* getClipboard(CFigure* Clipboard)const {
-            	return Clipboard;
-}
+         void setClipboard(CFigure* ptr);
+	CFigure* getClipboard(CFigure* ptr);
 void setSelectedFig(CFigure* ptr);//setter w getter el clipboard
 CFigure* getSelectedFig(CFigure* SelectedFig) {
 	return SelectedFig;
