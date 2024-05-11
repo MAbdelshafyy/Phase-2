@@ -9,27 +9,43 @@ void Copy::ReadActionParameters() {}
 void Copy::Execute()
 {
 	Output* pOut = pManager->GetOutput();
-	if (pManager->GetSelectedFigCount()==0)
-		pOut->PrintMessage("No figure is selected to copy");
-	else {
-		for (int i = 0; i < pManager->GetSelectedFigCount(); i++)
-		{
-			CFigure* SelectFig = pManager->GetSelectedFigs(i);//bye2ra el ragel medakhal eh
+	ReadActionParameters();
 
+	for (int i = 0; i < pManager->GetSelectedFigCount(); i++)
+	{
+		CFigure* SelectFig = pManager->GetSelectedFigList(0);//bye2ra el ragel medakhal eh
 
-				for (int i = 0; i < pManager->GetFigCount(); i++)
-				{
-					CFigure* SelectFig = pManager->GetSelectedFigs(i);
+		if (pManager->GetSelectedFigCount() == 0) { //beyshof hwa fe selected figure wala la
 
-					pManager->setClipboard(SelectFig);
-
-					pOut->PrintMessage("SeleActed figure is copied");
-
-					pManager->GetFigList(i)->SetSelected(false);
-
-					SelectAction* SelectedFigCount = 0;
-					pOut->PrintMessage("All figures unselected");
-				}
+			pOut->PrintMessage("No figure is selected to copy");
 		}
+
+		else if (pManager->GetSelectedFigCount() > 1) {
+			pOut->PrintMessage("Select one figure only");
+		}
+
+		else
+		{
+			pManager->UnselectFig(SelectFig);
+			SelectFig->SetSelected(false);
+
+
+			for (int i = 0; i < pManager->GetSelectedFigCount(); i++)
+			{
+				CFigure* SelectFig = pManager->GetSelectedFigList(i);
+
+				pManager->setClipboard(SelectFig);
+
+				pOut->PrintMessage("SeleActed figure is copied");
+
+				pManager->GetFigList(i)->SetSelected(false);
+				SelectFig->SetSelected(false);
+				pManager->UnselectFig(SelectFig);
+
+				SelectAction* SelectedFigCount = 0;
+				pOut->PrintMessage("All figures unselected");
+			}
+		}
+
 	}
 }
