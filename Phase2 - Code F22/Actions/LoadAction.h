@@ -9,7 +9,7 @@
 class LoadAction :public Action
 {
 private:
-	fstream InFile;
+	ifstream InFile;
 	string FileName;
 	color GetColorObj(string)const;
 public:
