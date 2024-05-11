@@ -8,6 +8,10 @@
 #include "BorderAction.h"
 #include "FillingAction.h"
 #include "SaveAction.h"
+#include "Paste.h"
+#include "Delete.h"
+#include "Copy.h"
+#include "ClearAll.h"
 
 
 //Constructor
@@ -108,6 +112,17 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case TO_PLAY:
 			pOut->CreatePlayToolBar();
 			break;
+		case DO_PST:
+			pAct = new Paste(this);
+		
+		case DO_CPY:
+			pAct = new Copy(this);
+		
+		case DO_DLT:
+			pAct = new Delete(this);
+		
+		case DO_DLTALL:
+			pAct = new ClearAll(this);
 
 		case EXIT:
 			///create ExitAction here
@@ -171,6 +186,16 @@ CFigure *ApplicationManager::GetFigure(Point p) const
 	//Remember that ApplicationManager only calls functions do NOT implement it.
 }
 
+CFigure* ApplicationManager::getClipboard(CFigure* Clipboard)
+{
+	return Clipboard;
+}
+
+void ApplicationManager::setClipboard(CFigure* ptr) {
+
+	Clipboard = ptr;
+	
+}
 void ApplicationManager::SelectFig(CFigure* pFig)
 {
 	SelectedFigList[SelectedFigCount] = pFig;
