@@ -53,6 +53,26 @@ void CRectangle::Save(ofstream& OutFile)
 		OutFile << "RECT" << '\t' << ID << '\t' << Corner1.x << '\t' << Corner1.y << '\t' << Corner2.x << '\t' << Corner2.y << '\t' << DrawCOLOR << '\t' << "NO FILL" << endl;
 	}
 }
+void CRectangle::Load(ifstream& InFile)
+{
+	string DrawCOLOR;
+	string FillCOLOR;
+	InFile >> ID >> Corner1 >> Corner2;
+	InFile >> DrawCOLOR;
+	FigGfxInfo.DrawClr = getColorObj(DrawCOLOR);
+	InFile >> FillCOLOR;
+	if (FillCOLOR == "NO_FILL")
+	{
+		FigGfxInfo.isFilled = false;
+	}
+	else {
+		FigGfxInfo.isFilled = true;
+		FigGfxInfo.FillClr = getColorObj(FillCOLOR);
+	}
+	///set the border width and calc the radius
+	FigGfxInfo.BorderWdth = UI.PenWidth;
+	SetID(ID);
+}
 
 int CRectangle::ShapeCounter()
 {
