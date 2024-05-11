@@ -24,20 +24,20 @@ void Paste::ReadActionParameters() {
 void Paste::Execute()
 {
 	Output* pOut = pManager->GetOutput();
-	CFigure* clipboard = pManager->getClipboard(clipboard);
+	CFigure* Clipboard = pManager->getClipboard(Clipboard);
 
 	CFigure* movecrdnts(Point pClicked, Point p2, Point p3);
 
 	//hastakhdem hena el dynamic cast 3ashan aghayar el pointers beta3et el CFigures akhaleeha pointer el paste
 
-	if (dynamic_cast<CSquare*>(clipboard))		//bey check anhy figure fel clipboard
+	if (dynamic_cast<CSquare*>(Clipboard))		//bey check anhy figure fel clipboard
 	{ 
 			Point p2;
 			Point p3;
 			
-			clipboard->movecrdnts(pClicked, p2, p3);
+			Clipboard->movecrdnts(pClicked, p2, p3);
 
-			CSquare* S = new CSquare(p2,clipboard->getGfxInfo());//bye3mel line gedeed bel crdnts el gedeeda bel dynamic allocation eashan yeb2a "copied"
+			CSquare* S = new CSquare(p2,Clipboard->getGfxInfo());//bye3mel line gedeed bel crdnts el gedeeda bel dynamic allocation eashan yeb2a "copied"
 
 
 			pManager->AddFigure(S); //bey add el fig el gedeed lel list
@@ -45,28 +45,28 @@ void Paste::Execute()
 			pOut->PrintMessage("Square is pasted");
 
 	}
-		else if (dynamic_cast<CTriangle*>(clipboard))
+		else if (dynamic_cast<CTriangle*>(Clipboard))
 		{
 			Point p2;
 			Point p3;
 			Point p4;
 
-			clipboard->movecrdnts(pClicked, p2, p3);
+			Clipboard->movecrdnts(pClicked, p2, p3);
 
-			CTriangle* T = new CTriangle(p2, p3, p4,clipboard->getGfxInfo());//same tri bas crdnts gedeeda
+			CTriangle* T = new CTriangle(p2, p3, p4,Clipboard->getGfxInfo());//same tri bas crdnts gedeeda
 
 			pManager->AddFigure(T);
 
 			pOut->PrintMessage("Triangle is pasted ");
 		}
-		else if (dynamic_cast<CCircle*>(clipboard)) 
+		else if (dynamic_cast<CCircle*>(Clipboard)) 
 		{
 			Point p2;
 			Point p3;
 
-			clipboard->movecrdnts(pClicked, p2, p3);
+			Clipboard->movecrdnts(pClicked, p2, p3);
 
-			CCircle* H = new CCircle(p2,p3,clipboard->getGfxInfo());//same circ bas crdnts gedeeda
+			CCircle* H = new CCircle(p2,p3,Clipboard->getGfxInfo());//same circ bas crdnts gedeeda
 
 			pManager->AddFigure(H);
 
@@ -77,9 +77,9 @@ void Paste::Execute()
 
 			Point p2;
 			Point p3;
-			clipboard->movecrdnts(pClicked, p2, p3);
+			Clipboard->movecrdnts(pClicked, p2, p3);
 
-			CHexagon* H = new CHexagon(p2,clipboard->getGfxInfo());//same hexa bas crdnts gedeeda
+			CHexagon* H = new CHexagon(p2,Clipboard->getGfxInfo());//same hexa bas crdnts gedeeda
 
 			pManager->AddFigure(H);
 
@@ -87,4 +87,4 @@ void Paste::Execute()
 		}
 }
 
-	
+		
