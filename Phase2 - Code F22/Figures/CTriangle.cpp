@@ -8,6 +8,7 @@ CTriangle::CTriangle(Point Corner1, Point Corner2, Point Corner3, GfxInfo FigGfx
 	P2 = Corner2;
 	P3 = Corner3;
 }
+CTriangle::CTriangle(){}
 
 void CTriangle::Draw(Output* pOut) const
 {
