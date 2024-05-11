@@ -33,7 +33,7 @@ void CFigure::SetID(int id)
 	ID = id;
 }
 
-string CFigure::GetColorType(color type)
+string CFigure::GetColorType(color type) const
 {
 	if (type == RED)
 	{
