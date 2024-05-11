@@ -22,7 +22,11 @@ bool CRectangle::PointIn(Point p)
 	else
 		return false;
 }
-
+void CRectangle::movecrdnts(Point pClicked, Point p2, Point p3)
+{
+	p2.x = Corner2.x - Corner1.x + pClicked.x;
+	p2.y = Corner2.y - Corner1.y + pClicked.y;
+}
 void CRectangle::PrintInfo(Output* pOut)
 {
 	string s = ("ID: " + to_string(ID) + ", Rectangle, Border color: " + GetColorType(GetDrawClr())) + ", Filling color: ";
