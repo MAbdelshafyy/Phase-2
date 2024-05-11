@@ -23,6 +23,13 @@ bool CTriangle::PointIn(Point p)
 	double A3 = getTriangleArea(P1, P2, p);
 	return (A == A1 + A2 + A3);
 }
+void CTriangle::movecrdnts(Point pClicked, Point p2, Point p3)
+{
+	p2.x = P2.x - P1.x + pClicked.x;
+	p2.y = P2.y - P1.y + pClicked.y;
+	p3.x = P3.x - P1.x + pClicked.x;
+	p3.y = P3.y - P1.y + pClicked.y;
+}
 
 void CTriangle::PrintInfo(Output* pOut)
 {
