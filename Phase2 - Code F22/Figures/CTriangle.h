@@ -14,7 +14,7 @@ public:
 	virtual bool PointIn(Point p);
 	virtual void PrintInfo(Output* pOut);
 	virtual void Save(ofstream& OutFile);
-        virtual void Load(Ifstream& InFile);
+        virtual void Load(ifstream& InFile);
 
 	virtual int ShapeCounter();
 	virtual void movecrdnts(Point pClicked, Point p2, Point p3);
