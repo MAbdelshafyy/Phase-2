@@ -17,6 +17,11 @@ bool CSquare::PointIn(Point p)
 {
 	return ((p.x >= Center1.x - 100) && (p.x <= Center1.x + 100) && (p.y >= Center1.y - 100) && (p.y <= Center1.y + 100));
 }
+void CSquare::movecrdnts(Point pClicked, Point p2, Point Center2)
+{
+	p2.x = Center2.x - Center1.x + pClicked.x;
+	p2.y = Center2.y - Center1.y + pClicked.y;
+}
 
 void CSquare::PrintInfo(Output* pOut)
 {
