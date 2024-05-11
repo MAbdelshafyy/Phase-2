@@ -6,6 +6,7 @@ CSquare::CSquare(Point Center, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center1 = Center;
 }
+CSquare::CSquare(){}
 
 void CSquare::Draw(Output* pOut) const
 {
