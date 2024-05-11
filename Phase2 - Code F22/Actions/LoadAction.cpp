@@ -105,6 +105,7 @@ void LoadAction::Execute()
 
 			/// looping on the figures///
 			string name;
+			InFile>>name;
 			for (int i = 0; i < numfig; i++)
 			{
 				if (name == "RECT")
