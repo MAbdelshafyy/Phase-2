@@ -15,5 +15,7 @@ public:
 	virtual void PrintInfo(Output* pOut);
 	virtual void Save(ofstream& OutFile);
 	virtual int ShapeCounter();
+	virtual void movecrdnts(Point pClicked, Point p2, Point p3)=0;
+
 };
 #endif
