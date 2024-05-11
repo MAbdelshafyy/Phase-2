@@ -57,7 +57,7 @@ void CSquare::Load(ifstream& InFile)
 	string DrawCOLOR;
 	string FillCOLOR;
 	/// read id and point///
-	InFile >> ID >> P1.x>>P1.y;
+	InFile >> ID >> Center1.x>>Center1.y;
 	/// set draw color///
 	InFile >> DrawCOLOR;
 	FigGfxInfo.DrawClr = getColorObj(DrawCOLOR);
