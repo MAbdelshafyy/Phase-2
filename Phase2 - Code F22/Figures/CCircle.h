@@ -10,6 +10,7 @@ private:
 	Point P2;     ///Declare Point 2
 public:
 	CCircle(Point, Point, GfxInfo FigureGfxInfo);
+        CCircle();
 	virtual void Draw(Output* pOut) const; ///Draw
 	virtual bool PointIn(Point p);
 	virtual void PrintInfo(Output* pOut);
