@@ -66,7 +66,7 @@ void CTriangle::Load(ifstream &InFile)
 {
 	string DrawCOLOR;
 	string FillCOLOR;
-	InFile >> ID >> P1 >> P2 >> P3;
+	InFile >> ID >> P1.x>>P1.y >> P2.x>>P2.y >> P3.x>>P3.y;
 	InFile >> DrawCOLOR;
 	FigGfxInfo.DrawClr = getColorObj(DrawCOLOR);
 	InFile>>FillCOLOR;
