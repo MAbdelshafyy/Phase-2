@@ -84,6 +84,27 @@ void CHexagon::Save(ofstream& OutFile)
 
 	}
 }
+void CHexagon::Load(ifstream& InFile)
+{
+	string DrawCOLOR;
+	string FillCOLOR;
+	InFile >> ID >> P1;
+	InFile >> DrawCOLOR;
+	FigGfxInfo.DrawClr = getColorObj(DrawCOLOR);
+	InFile >> FillCOLOR;
+	//if filled set the fill clr
+	if (FillCOLOR == "NO_FILL")
+	{
+		FigGfxInfo.isFilled = false;
+	}
+	else {
+		FigGfxInfo.isFilled = true;
+		FigGfxInfo.FillClr = getColorObj(FillCOLOR);
+	}
+	///set the border width 
+	FigGfxInfo.BorderWdth = UI.PenWidth;
+	SetID(ID);
+}
 
 int CHexagon::ShapeCounter()
 {
