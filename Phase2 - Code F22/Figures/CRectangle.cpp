@@ -57,7 +57,7 @@ void CRectangle::Load(ifstream& InFile)
 {
 	string DrawCOLOR;
 	string FillCOLOR;
-	InFile >> ID >> Corner1 >> Corner2;
+	InFile >> ID >> Corner1.x>>Corner1.y >> Corner2.x>>Corner2.y;
 	InFile >> DrawCOLOR;
 	FigGfxInfo.DrawClr = getColorObj(DrawCOLOR);
 	InFile >> FillCOLOR;
