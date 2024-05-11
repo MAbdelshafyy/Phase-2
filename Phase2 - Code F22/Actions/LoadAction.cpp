@@ -7,6 +7,10 @@
 #include "GUI\output.h"
 #include "Figures\CFigure.h"
 #include "Figures\CRectangle.h"
+#include "Figures\CSquare.h"
+#include "Figures\CHexagon.h"
+#include "Figures\CCircle.h"
+#include "Figures\CTriangle.h"
 color LoadAction::GetColorObj(string obj) const
 {
 	
