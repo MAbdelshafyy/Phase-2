@@ -139,7 +139,7 @@ void LoadAction::Execute()
 			}
 			pOut->PrintMessage("File found and loaded with success");
 			//close the file after looping 
-		InputFile.close();
+		InFile.close();
 
 		}
 		else
