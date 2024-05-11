@@ -66,7 +66,7 @@ void CCircle::Save(ofstream& OutFile)
 
 	}
 }
-void CCircle::Load(ifstream& Infile)
+void CCircle::Load(ifstream& InFile)
 {
 	Point Center;
 	Center.x = (P1.x + P2.x) / 2;
