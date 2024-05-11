@@ -9,6 +9,11 @@
 #include "FillingAction.h"
 #include "SaveAction.h"
 #include "Actions/LoadAction.h"
+#include "Paste.h"
+#include "Delete.h"
+#include "Copy.h"
+#include "ClearAll.h"
+
 
 
 //Constructor
@@ -69,6 +74,27 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DO_SLCT:
 			pAct = new SelectAction(this);
 			break;
+
+		case DO_SLCT:
+			pAct = new SelectAction(this);
+			break;
+
+		case DO_DLT:
+			pAct = new Delete(this);
+			break;
+
+		case DO_DLTALL:
+			pAct = new ClearAll(this);
+			break;
+
+		case DO_CPY:
+			pAct = new Copy(this);
+			break;
+
+		case DO_PST:
+			pAct = new Paste(this);
+			break;
+
 
 		case DO_BRDR:
 			pAct = new BorderAction(this);
