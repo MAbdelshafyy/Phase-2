@@ -46,7 +46,7 @@ public:
 virtual void movecrdnts(Point pClicked, Point p2, Point p3) = 0;
 
 	virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
-	virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
+	virtual void Load(ifstream &InFile) = 0;	//Load the figure parameters to the file
 
 	virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 };
