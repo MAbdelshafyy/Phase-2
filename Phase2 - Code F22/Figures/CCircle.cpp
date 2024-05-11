@@ -78,7 +78,7 @@ void CCircle::Load(ifstream& Infile)
 	InFile >> DrawCOLOR;
 	FigGfxInfo.DrawClr = getColorObj(DrawCOLOR);
 	InFile>>FillCOLOR;
-	if (FillCOLOR = "NO FILL")
+	if (FillCOLOR == "NO FILL")
 	{
 		FigGfxInfo.isFilled = false;
 	}
