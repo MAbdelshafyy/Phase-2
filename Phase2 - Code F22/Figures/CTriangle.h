@@ -10,6 +10,7 @@ private:
 	Point P3;
 public:
 	CTriangle(Point, Point, Point, GfxInfo FigGfxInfo);
+        CTriangle();
 	virtual void Draw(Output* pOut) const;
 	virtual bool PointIn(Point p);
 	virtual void PrintInfo(Output* pOut);
