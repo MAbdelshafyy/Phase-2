@@ -14,6 +14,11 @@ void CCircle::Draw(Output* pOut) const
 	//Call Output::DrawCirc to draw a circle on the screen
 	pOut->DrawCirc(P1, P2, FigGfxInfo, Selected);
 }
+void CCircle::movecrdnts(Point pClicked, Point p2, Point p3) {
+
+	p2.x = P2.x - P1.x + pClicked.x;
+	p2.y = P2.y - P1.y + pClicked.y;
+}
 
 bool CCircle::PointIn(Point p)
 {
