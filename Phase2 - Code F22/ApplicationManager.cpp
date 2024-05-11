@@ -8,6 +8,7 @@
 #include "BorderAction.h"
 #include "FillingAction.h"
 #include "SaveAction.h"
+#include "Actions/LoadAction.h"
 
 
 //Constructor
