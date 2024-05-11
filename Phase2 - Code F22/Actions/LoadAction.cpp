@@ -92,12 +92,12 @@ void LoadAction::Execute()
 			/// read the first string from the file and store it in drawcolor
 			InFile >> DrawCOLOR;
 			/// change it from string to an object in color class
-			UI.DrawColor() = GetColorObj(DrawCOLOR);
+			UI.DrawClr() = GetColorObj(DrawCOLOR);
 			string FillCOLOR;
 			///read the second string from the file & store it in the fillcolor variable  
 			InFile >> FillCOLOR;
 			///change it from string to an object in color class
-			UI.FillColor() = GetColorObj(FillCOLOR);
+			UI.FillClr() = GetColorObj(FillCOLOR);
 			/// reads the first integer which is in the save function the total number of figures
 			InFile >> numfig;
 			///Clearing the figures list///
