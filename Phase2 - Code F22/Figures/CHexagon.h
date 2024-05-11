@@ -12,6 +12,7 @@ private:
 public:
 
 	CHexagon(Point Center, GfxInfo FigureGfxInfo);
+        CHexagon();
 	virtual void Draw(Output* pOut) const;
 	virtual bool PointIn(Point p);
 	virtual void PrintInfo(Output* pOut);
