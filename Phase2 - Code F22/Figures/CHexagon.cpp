@@ -51,7 +51,11 @@ bool CHexagon::PointIn(Point p)
 	else
 		return false;
 }
-
+void CHexagon::movecrdnts(Point pClicked, Point p2, Point Center2)
+{
+	p2.x = Center2.x - P1.x + pClicked.x;
+	p2.y = Center2.y - P1.y + pClicked.y;
+}
 void CHexagon::PrintInfo(Output* pOut)
 {
 	string s = ("ID: " + to_string(ID) + ", Hexagon, Border color: " + GetColorType(GetDrawClr())) + ", Filling color: ";
