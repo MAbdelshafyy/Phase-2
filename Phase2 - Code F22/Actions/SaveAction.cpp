@@ -82,7 +82,7 @@ void SaveAction::Execute() {
 		///Using the saveall function from app manager for every figure to save itself 
 		pManager->SaveAll(OutFile);
 
-		string s = "File: " + FileName + ".txt" + " " + " has been saved successfully";
+		string s = "File: " + FileName + " " + " has been saved successfully";
 		pOut->PrintMessage(s);
 		OutFile.close();
 
