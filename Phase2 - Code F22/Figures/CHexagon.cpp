@@ -88,7 +88,7 @@ void CHexagon::Load(ifstream& InFile)
 {
 	string DrawCOLOR;
 	string FillCOLOR;
-	InFile >> ID >> P1;
+	InFile >> ID >> P1.x>>P1.y;
 	InFile >> DrawCOLOR;
 	FigGfxInfo.DrawClr = getColorObj(DrawCOLOR);
 	InFile >> FillCOLOR;
