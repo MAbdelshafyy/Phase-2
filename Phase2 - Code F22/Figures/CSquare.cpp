@@ -51,6 +51,30 @@ void CSquare::Save(ofstream& OutFile)
 
 	}
 }
+void CSquare::Load(ifstream& InFile)
+{   
+	/// Initialize colors///
+	string DrawCOLOR;
+	string FillCOLOR;
+	/// read id and point///
+	InFile >> ID >> P1;
+	/// set draw color///
+	InFile >> DrawCOLOR;
+	FigGfxInfo.DrawClr = getColorObj(DrawCOLOR);
+	InFile >> FillCOLOR;
+	//if filled set the fill clr
+	if (FillCOLOR == "NO_FILL")
+	{
+		FigGfxInfo.isFilled = false;
+	}
+	else {
+		FigGfxInfo.isFilled = true;
+		FigGfxInfo.FillClr = getColorObj(FillCOLOR);
+	}
+	///set the border width
+	FigGfxInfo.BorderWdth = UI.PenWidth;
+	SetID(ID);
+}
 
 int CSquare::ShapeCounter()
 {
