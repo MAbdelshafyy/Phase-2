@@ -104,6 +104,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DO_SAVE:
 			pAct = new SaveAction(this);
 			break;
+		case DO_LOAD:
+		        pAct = new LoadAction(this);
+		        break;
 
 		case TO_PLAY:
 			pOut->CreatePlayToolBar();
