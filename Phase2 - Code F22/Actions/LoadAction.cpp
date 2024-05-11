@@ -145,7 +145,7 @@ void LoadAction::Execute()
 
 			// Ask the user if they want to try again
 			pOut->PrintMessage("Do you want to try and enter file name again? (y/any character)");
-			string response = pIn->GetSrting(response);
+			string response = pIn->GetSrting(pOut);
 
 			// Check user response
 			if (response != "y" && response != "Y")
