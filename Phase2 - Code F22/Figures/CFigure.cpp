@@ -65,7 +65,39 @@ string CFigure::GetColorType(color type)
 		return "GREEN";
 	}
 }
+color CFigure::getColorObj(string obj) const
+{
+	if (obj == "RED")
+	{
+		return RED;
+	}
 
+	if (obj == "BLUE")
+	{
+		return BLUE;
+	}
+
+	if (obj == "BLACK")
+	{
+		return BLACK;
+	}
+
+	if (obj == "YELLOW")
+	{
+		return YELLOW;
+	}
+
+	if (obj == "ORANGE")
+	{
+		return ORANGE;
+	}
+
+	if (obj == "GREEN")
+	{
+		return GREEN;
+	}
+	
+}
 
 color CFigure::GetDrawClr()
 {
