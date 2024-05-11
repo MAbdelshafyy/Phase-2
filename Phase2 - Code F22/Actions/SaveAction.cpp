@@ -35,7 +35,7 @@ string SaveAction::GetColorType(color type) const
 		return "ORANGE";
 	}
 
-	if (type == GREEN)
+	if (type == DARKGREEN)
 	{
 		return "GREEN";
 	}

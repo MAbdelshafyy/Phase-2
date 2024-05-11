@@ -8,10 +8,6 @@
 #include "BorderAction.h"
 #include "FillingAction.h"
 #include "SaveAction.h"
-#include "Paste.h"
-#include "Delete.h"
-#include "Copy.h"
-#include "ClearAll.h"
 
 
 //Constructor
@@ -112,23 +108,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case TO_PLAY:
 			pOut->CreatePlayToolBar();
 			break;
-		case DO_PST:
-			pAct = new Paste(this);
-		
-		case DO_CPY:
-			pAct = new Copy(this);
-		
-		case DO_DLT:
-			pAct = new Delete(this);
-		
-		case DO_DLTALL:
-			pAct = new ClearAll(this);
 
 		case EXIT:
 			///create ExitAction here
 			pOut->PrintMessage("Exiting..");
 			UnselectAll();
-			for (int i = 0; i < FigCount - 1; i++) {
+			for (int i = 0; i < FigCount; i++) {
 				delete FigList[i];
 			}
 			break;
@@ -186,6 +171,7 @@ CFigure *ApplicationManager::GetFigure(Point p) const
 	//Remember that ApplicationManager only calls functions do NOT implement it.
 }
 
+
 CFigure* ApplicationManager::getClipboard(CFigure* Clipboard)
 {
 	return Clipboard;
@@ -194,16 +180,19 @@ CFigure* ApplicationManager::getClipboard(CFigure* Clipboard)
 void ApplicationManager::setClipboard(CFigure* ptr) {
 
 	Clipboard = ptr;
-	
+
 }
+
 void ApplicationManager::SelectFig(CFigure* pFig)
 {
+	pFig->SetSelected(true);
 	SelectedFigList[SelectedFigCount] = pFig;
 	SelectedFigCount++;
 }
 
 void ApplicationManager::UnselectFig(CFigure* pFig)
 {
+	pFig->SetSelected(false);
 	int c;
 	for (int i = 0; i < SelectedFigCount; i++) {
 		if (SelectedFigList[i] == pFig) {
@@ -218,7 +207,8 @@ void ApplicationManager::UnselectFig(CFigure* pFig)
 
 void ApplicationManager::UnselectAll()
 {
-	for (int i = 0; i < SelectedFigCount - 1; i++) {
+	for (int i = 0; i < SelectedFigCount; i++) {
+		SelectedFigList[i]->SetSelected(false);
 		delete SelectedFigList[i];
 	}
 	SelectedFigCount = 0;

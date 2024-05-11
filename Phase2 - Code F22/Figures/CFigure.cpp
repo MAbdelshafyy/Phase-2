@@ -60,7 +60,7 @@ string CFigure::GetColorType(color type)
 		return "ORANGE";
 	}
 
-	if (type == GREEN)
+	if (type == DARKGREEN)
 	{
 		return "GREEN";
 	}

@@ -45,13 +45,15 @@ public:
 	CFigure* GetFigList(int i);
 	CFigure *GetFigure(Point p) const; //Search for a figure given a point inside the figure
 
+	void setClipboard(CFigure* ptr);
+	CFigure* getClipboard(CFigure* ptr);
+
 	void SelectFig(CFigure* pFig);
 	void UnselectFig(CFigure* pFig);
 	void UnselectAll();
 	int GetSelectedFigCount();
 	CFigure* GetSelectedFigs(int i);
-	void setClipboard(CFigure* ptr);
-	CFigure* getClipboard(CFigure* ptr);
+
 	void SaveAll(ofstream& OutFile);
 
 	void dltfig(CFigure* selectedFig) {}//delete el figure el selected

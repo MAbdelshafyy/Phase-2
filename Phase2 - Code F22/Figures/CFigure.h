@@ -33,8 +33,6 @@ public:
 
 	color GetDrawClr();
 	color GetFillClr();
-
-	virtual int ShapeCounter() = 0;
 	
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
@@ -51,4 +49,4 @@ public:
 	virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 };
 
-
+#endif
