@@ -134,6 +134,8 @@ void LoadAction::Execute()
 				pManager->AddFigure(Fig);
 			}
 			pOut->PrintMessage("File found and loaded with success");
+			//close the file after looping 
+		InputFile.close();
 
 		}
 		else
