@@ -1,6 +1,7 @@
 #include "CCircle.h"
 #include <cmath>
 #include <fstream>
+#include <string>
 
 
 CCircle::CCircle(Point Point1, Point Point2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo) ///Initializer for constructor "inherited class"
