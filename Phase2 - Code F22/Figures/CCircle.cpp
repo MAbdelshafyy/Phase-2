@@ -9,6 +9,7 @@ CCircle::CCircle(Point Point1, Point Point2, GfxInfo FigureGfxInfo) :CFigure(Fig
 	P1 = Point1;
 	P2 = Point2;
 }
+CCircle::CCircle(){}
 
 void CCircle::Draw(Output* pOut) const
 {
