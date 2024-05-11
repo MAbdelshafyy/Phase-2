@@ -20,8 +20,7 @@ void Delete::Execute()
 			CFigure* SelectFig = pManager->GetSelectedFigs(i);//bye2ra el ragel medakhal eh
 
 
-			pManager->dltfig(SelectFig);//bey delete el fig 
-			SelectFig->SetSelected(false); //bey unselect 
+			pManager->dltfig(SelectFig);//bey delete el fig
 			pManager->UnselectFig(SelectFig);
 			delete SelectFig;
 			c++;

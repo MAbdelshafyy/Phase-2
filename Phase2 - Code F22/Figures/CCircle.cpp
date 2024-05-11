@@ -66,7 +66,3 @@ void CCircle::Save(ofstream& OutFile)
 	}
 }
 
-int CCircle::ShapeCounter()
-{
-	return 0;
-}

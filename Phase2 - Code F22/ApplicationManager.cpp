@@ -209,7 +209,7 @@ void ApplicationManager::UnselectAll()
 {
 	for (int i = 0; i < SelectedFigCount; i++) {
 		SelectedFigList[i]->SetSelected(false);
-		delete SelectedFigList[i];
+		SelectedFigList[i]=NULL;
 	}
 	SelectedFigCount = 0;
 }
