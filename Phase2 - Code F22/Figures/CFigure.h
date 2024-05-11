@@ -29,7 +29,7 @@ public:
 	int GetID();
 	void SetID(int id);
 
-	string GetColorType(color type); //Change from color to string
+	string GetColorType(color type) const;  //Change from color to string
         color getColorObj(string) const; //Change from string to color
 
 	color GetDrawClr();
