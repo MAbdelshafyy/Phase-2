@@ -50,7 +50,8 @@ public:
 	void UnselectAll();
 	int GetSelectedFigCount();
 	CFigure* GetSelectedFigs(int i);
-
+	void setClipboard(CFigure* ptr);
+	CFigure* getClipboard(CFigure* ptr);
 	void SaveAll(ofstream& OutFile);
 
 	void dltfig(CFigure* selectedFig) {}//delete el figure el selected
