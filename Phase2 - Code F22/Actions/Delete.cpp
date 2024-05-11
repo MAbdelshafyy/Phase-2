@@ -1,6 +1,7 @@
 #include "Delete.h"
 #include "SelectAction.h"
 #include "ApplicationManager.h"
+#include"Figures/CFigure.h"
 
 
 
@@ -11,21 +12,23 @@ void Delete::ReadActionParameters() {}
 void Delete::Execute()
 {
 	Output* pOut = pManager->GetOutput();
-	int c = 0;
-	if (pManager->GetSelectedFigCount() == 0)
-		pOut->PrintMessage("No figure is selected to delete");
-	else {
-		for (int i = 0; i < pManager->GetSelectedFigCount(); i++)
-		{
-			CFigure* SelectFig = pManager->GetSelectedFigs(i);//bye2ra el ragel medakhal eh
+	for (int i = 0; i < pManager->GetFigCount(); i++)
+	{
+		CFigure* SelectFig = pManager->GetSelectedFigList(i);//bye2ra el ragel medakhal eh
+		
+		if (pManager->GetSelectedFigCount() == 0) { //beyshof hwa fe selected figure wala la
 
-
-			pManager->dltfig(SelectFig);//bey delete el fig
-			pManager->UnselectFig(SelectFig);
-			delete SelectFig;
-			c++;
+			pOut->PrintMessage("No figure is selected to copy");
 		}
-		string s = to_string(c) + "Figure(s) deleted";
-		pOut->PrintMessage(s);
+		else
+		{
+			pManager->dltfig(SelectFig);//bey delete el fig 
+			pManager->SelectFig(NULL);
+			pOut->PrintMessage("figure is deleted");
+
+			SelectFig->SetSelected(false);//bey unselect 
+			delete SelectFig;
+		}
+
 	}
 }
