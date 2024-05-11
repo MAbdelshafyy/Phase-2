@@ -74,9 +74,10 @@ void CCircle::Load(ifstream& Infile)
 	double radius = sqrt(pow(P2.x - P1.x, 2) + pow(P2.y - P1.y, 2)) / 2.0;
 	string DrawCOLOR;
 	string FillCOLOR;
-	Infile >> ID >> Center.x >> Center.y >> radius;
-	Infile >> DrawCOLOR;
+	InFile >> ID >> Center.x >> Center.y >> radius;
+	InFile >> DrawCOLOR;
 	FigGfxInfo.DrawClr = getColorObj(DrawCOLOR);
+	InFile>>FillCOLOR;
 	if (FillCOLOR = "NO FILL")
 	{
 		FigGfxInfo.isFilled = false;
