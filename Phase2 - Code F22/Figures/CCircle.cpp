@@ -65,4 +65,31 @@ void CCircle::Save(ofstream& OutFile)
 
 	}
 }
+void CCircle::Load(ifstream& Infile)
+{
+	Point Center;
+	Center.x = (P1.x + P2.x) / 2;
+	Center.y = (P1.y + P2.y) / 2;
+	double radius = sqrt(pow(P2.x - P1.x, 2) + pow(P2.y - P1.y, 2)) / 2.0;
+	string DrawCOLOR;
+	string FillCOLOR;
+	Infile >> ID >> Center.x >> Center.y >> radius;
+	Infile >> DrawCOLOR;
+	FigGfxInfo.DrawClr = getColorObj(DrawCOLOR);
+	if (FillCOLOR = "NO FILL")
+	{
+		FigGfxInfo.isFilled = false;
+	}
+	else
+	{
+		FigGfxInfo.isFilled = true;
+		FigGfxInfo.FillClr = getColorObj(FillCOLOR);
+	}
+	P1.x = Center.x + radius;
+	P1.y = Center.y;
+	P2.x = Center.x - radius;
+	P2.y = Center.y;
+	FigGfxInfo.BorderWdth = UI.PenWidth;
+	SetID(ID);
+}
 

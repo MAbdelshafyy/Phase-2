@@ -44,6 +44,7 @@ public:
 	int GetFigCount();
 	CFigure* GetFigList(int i);
 	CFigure *GetFigure(Point p) const; //Search for a figure given a point inside the figure
+        void ClearFigList();    /// Clears figures list
 
 	void setClipboard(CFigure* ptr);
 	CFigure* getClipboard(CFigure* ptr);

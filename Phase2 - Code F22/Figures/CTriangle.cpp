@@ -62,6 +62,26 @@ void CTriangle::Save(ofstream& OutFile)
 
 }
 
+void CTriangle::Load(ifstream &InFile)
+{
+	string DrawCOLOR;
+	string FillCOLOR;
+	InFile >> ID >> P1 >> P2 >> P3;
+	InFile >> DrawCOLOR;
+	FigGfxInfo.DrawClr = getColorObj(DrawCOLOR);
+	//if filled set the fill clr
+	if (FillCOLOR == "NO_FILL")
+	{
+		FigGfxInfo.isFilled = false;
+	}
+	else {
+		FigGfxInfo.isFilled = true;
+		FigGfxInfo.FillClr = getColorObj(FillCOLOR);
+	}
+	FigGfxInfo.BorderWdth = UI.PenWidth;
+	SetID(ID);
+}
+
 int CTriangle::ShapeCounter()
 {
 	return 0;

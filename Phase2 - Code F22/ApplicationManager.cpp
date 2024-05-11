@@ -104,6 +104,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DO_SAVE:
 			pAct = new SaveAction(this);
 			break;
+		case DO_LOAD:
+		        pAct = new LoadAction(this);
+		        break;
 
 		case TO_PLAY:
 			pOut->CreatePlayToolBar();
@@ -169,6 +172,20 @@ CFigure *ApplicationManager::GetFigure(Point p) const
 
 	//Add your code here to search for a figure given a point x,y	
 	//Remember that ApplicationManager only calls functions do NOT implement it.
+}
+void ApplicationManager::ClearFigList()
+{
+	//Deletes all figures and nullifies the FigList (used with load)
+	
+		for (int i = 0; i < FigCount; i++)
+		{
+			delete FigList[i];
+			FigList[i] = NULL;
+		}
+		FigCount = 0;
+		UnselectAll();
+	
+
 }
 
 

@@ -29,7 +29,8 @@ public:
 	int GetID();
 	void SetID(int id);
 
-	string GetColorType(color type);
+	string GetColorType(color type); //Change from color to string
+        color getColorObj(string) const; //Change from string to color
 
 	color GetDrawClr();
 	color GetFillClr();
@@ -45,7 +46,7 @@ public:
 virtual void movecrdnts(Point pClicked, Point p2, Point p3) = 0;
 
 	virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
-	//virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
+	virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
 
 	virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 };
