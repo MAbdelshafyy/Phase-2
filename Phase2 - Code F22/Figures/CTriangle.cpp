@@ -69,6 +69,7 @@ void CTriangle::Load(ifstream &InFile)
 	InFile >> ID >> P1 >> P2 >> P3;
 	InFile >> DrawCOLOR;
 	FigGfxInfo.DrawClr = getColorObj(DrawCOLOR);
+	InFile>>FillCOLOR;
 	//if filled set the fill clr
 	if (FillCOLOR == "NO_FILL")
 	{
